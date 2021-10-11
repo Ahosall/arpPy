@@ -42,19 +42,12 @@ def getPorts():
   print(f'IP: {ip}\n\nAguarde um pouco ... coletando portas ...\n')
   
   for port in range(4000, 5000):
-    data = open('logs.txt', 'r+').read()
-
     client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     client.settimeout(.09)
     
     if client.connect_ex((ip, port)) == 0:
       ports.append(port)
-      with open('logs.txt', 'w+') as logs:
-        logs.write(f'{data}\n{port}...Success')
       print(f'Open ... {port}')
-    else:
-      with open('logs.txt', 'w+') as logs:
-        logs.write(f'{data}\n{port}...')
 
   return ports
 
